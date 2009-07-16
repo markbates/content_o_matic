@@ -41,7 +41,7 @@ module ContentOMatic
     end
     
     def exception
-      ContentOMatic::InvalidResponseError.new("URL: #{self.url} did not return a valid response! Status: #{self.status}") unless self.success?
+      ContentOMatic::InvalidResponseError.new("URL: '#{self.url}' did not return a valid response! Status: '#{self.status}' Body: '#{self.body}'") unless self.success?
     end
     
   end # Response

@@ -39,6 +39,10 @@ def fixture_value(*name)
   return File.read(fixture_path(*name))
 end
 
+def write_fixture(name, value)
+  File.open(fixture_path(*name), 'w') {|f| f.write(value)}
+end
+
 FakeWeb.allow_net_connect = false
 FakeWeb.register_uri(:get, 'http://www.example.com/full_page.html', :body => fixture_value('full_page.html'))
 FakeWeb.register_uri(:get, 'http://www.example.com/full_page.html?foo=bar', :body => fixture_value('full_page.html'))
