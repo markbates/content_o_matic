@@ -41,5 +41,8 @@ end
 
 FakeWeb.allow_net_connect = false
 FakeWeb.register_uri(:get, 'http://www.example.com/full_page.html', :body => fixture_value('full_page.html'))
+FakeWeb.register_uri(:get, 'http://www.example.com/full_page.html?foo=bar', :body => fixture_value('full_page.html'))
+FakeWeb.register_uri(:get, 'http://www.example.com/full_page.html?one=1', :body => fixture_value('full_page.html'))
+FakeWeb.register_uri(:get, 'http://www.example.com/full_page.html?one=1&foo=bar', :body => fixture_value('full_page.html'))
 FakeWeb.register_uri(:get, 'http://www.example.com/body_only.html', :body => fixture_value('body_only.html'))
 FakeWeb.register_uri(:get, "http://www.example.com/oops.html", :body => "Nothing to be found 'round here", :status => ["404", "Not Found"])
