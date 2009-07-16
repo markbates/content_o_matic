@@ -22,7 +22,10 @@ require 'spec/rake/spectask'
   s.require_paths = ['lib']
   s.extra_rdoc_files = ['README', 'LICENSE']
   s.has_rdoc = true
-  s.rubyforge_project = "content_o_matic"
+  s.rubyforge_project = "magrathea"
+  s.add_dependency('hpricot')
+  s.add_dependency('configatron')
+  s.add_dependency('cachetastic')
   # s.test_files = FileList['spec/**/*']
   #s.bindir = "bin"
   #s.executables << "content_o_matic"
