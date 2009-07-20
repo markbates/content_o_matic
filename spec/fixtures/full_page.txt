@@ -2,11 +2,20 @@
 <html>
   <head>
     <title>Some Awesome Page!</title>
+    <script src="foo.js"></script>
+    <script src="/bar.js"></script>
+    <script src="http://www.example.org/fubar.js"></script>
+    <link href="stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://www.example.org/stylesheets/bundle2.css" media="screen" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <h1>My Big Header!!</h1>
 
     <p>Blandit praesent luptatum zzril delenit: augue duis dolore te feugait nulla facilisi nam liber. Vulputate velit esse molestie consequat vel, illum dolore eu feugiat nulla facilisis at vero eros. Ad minim veniam quis nostrud exerci tation ullamcorper suscipit lobortis nisl, ut aliquip ex ea commodo? Odio dignissim qui tempor cum soluta nobis eleifend option congue nihil. Etiam processus dynamicus qui sequitur mutationem; consuetudium lectorum mirum est notare quam littera gothica quam nunc.</p>
+    <img src="image1.jpg" />
+    <img src="/image2.jpg" />
+    <img src="http://www.example.org/image3.jpg" />
   </body>
 </html>
 <!-- Loaded Content: 'full_page.html' -->
