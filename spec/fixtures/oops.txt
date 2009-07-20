@@ -1,3 +1,3 @@
 <!-- Loading Content: 'oops.html' -->
-<!-- Error: URL: 'http://www.example.com/oops.html?' did not return a valid response! Status: '404' Body: 'Nothing to be found 'round here' -->
+<!-- Error: URL: 'http://www.example.com/oops.html' did not return a valid response! Status: '404' Body: 'Nothing to be found 'round here' -->
 <!-- Loaded Content: 'oops.html' -->

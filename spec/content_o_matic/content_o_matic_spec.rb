@@ -48,7 +48,20 @@ describe ContentOMatic do
       resp = ContentOMatic.get(nil)
       resp.should_not be_nil
       resp.status.should == 500
-      resp.body.should match(/nil:NilClass/)
+      resp.body.should match(/bad URI\(is not URI\?\)/)
+    end
+    
+    it 'should save and return the content from cache if configured' do
+      configatron.temp do
+        configatron.content_o_matic.cache_results = true
+        resp = ContentOMatic.get('full_page.html')
+        resp.should_not be_nil
+        resp.should be_success
+        resp.body.should == fixture_value('full_page.html')
+        
+        resp2 = ContentOMatic.get('full_page.html')
+        resp.should === resp2
+      end
     end
     
   end

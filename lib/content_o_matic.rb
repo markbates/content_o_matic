@@ -5,6 +5,7 @@ require 'logger'
 
 configatron.content_o_matic.set_default(:url, 'http://www.example.com')
 configatron.content_o_matic.response.set_default(:time_out, 30)
+configatron.content_o_matic.set_default(:cache_results, false)
 
 if defined?(RAILS_DEFAULT_LOGGER)
   configatron.content_o_matic.set_default(:logger, RAILS_DEFAULT_LOGGER)

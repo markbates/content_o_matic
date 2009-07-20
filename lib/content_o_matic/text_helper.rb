@@ -3,7 +3,12 @@ module ActionView
     module TextHelper
       
       def content_o_matic(slug, options = {})
-        text = "<!-- Loading Content: '#{slug}' -->\n"
+        options = {} if options.nil?
+        comments = true
+        if options.has_key?(:print_comments)
+          comments = options.delete(:print_comments)
+        end
+        text = "<!-- Loading Content: '#{slug}' -->\n" if comments
         begin
           html_body = true
           if options.has_key?(:html_body)
@@ -20,9 +25,9 @@ module ActionView
             raise res.exception
           end
         rescue Exception => e
-          text << "<!-- Error: #{e.message} -->"
+          text << "<!-- Error: #{e.message} -->" if comments
         end
-        text << "\n<!-- Loaded Content: '#{slug}' -->"
+        text << "\n<!-- Loaded Content: '#{slug}' -->" if comments
         text
       end
       
