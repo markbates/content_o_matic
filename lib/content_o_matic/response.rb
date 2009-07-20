@@ -11,9 +11,6 @@ module ContentOMatic
       self.url = url
       self.status = status.to_i
       self.body = body
-      if success?
-        self.hpricot_doc = Hpricot(self.body)
-      end
     end
     
     def success?
@@ -32,8 +29,13 @@ module ContentOMatic
       return self.body != self.html_body
     end
     
-    def html_body
+    def body(normalize_assets = false)
+      @body
+    end
+    
+    def html_body(normalize_assets = false)
       unless @__doc_body
+        self.hpricot_doc = Hpricot(self.body(normalize_assets))
         @__doc_body = self.hpricot_doc.at('body')
         @__doc_body = @__doc_body.nil? ? self.body : @__doc_body.inner_html
       end
