@@ -41,6 +41,13 @@ describe ContentOMatic::Response do
       body.should == fixture_value('body_only.html')
     end
     
+    it 'should normalize assets if told' do
+      body = @full_page_response.body(true)
+      body.should_not be_nil
+      # write_fixture('full_page_normalized.txt', body)
+      body.should == fixture_value('full_page_normalized.txt')
+    end
+    
   end
   
   describe 'to_s' do
@@ -53,6 +60,49 @@ describe ContentOMatic::Response do
     it 'should return an empty string if the response was not successful' do
       @failure_response.should_not be_success
       @failure_response.to_s.should == ''
+    end
+    
+  end
+  
+  describe 'normalize' do
+    
+    it 'should normalize a complex document' do
+      resp = ContentOMatic::Response.new('http://www.example.com/complex_source.html', '200', fixture_value('complex_source.html'))
+      # write_fixture('complex_source_actual.txt', resp.body(true))
+      resp.body(true).should == fixture_value('complex_source_normalized.txt')
+    end
+    
+  end
+  
+  describe 'normalize_asset_url' do
+    
+    it 'should normalize an asset url' do
+      ContentOMatic::Response.class_eval do
+        public :normalize_asset_url
+      end
+      resp = ContentOMatic::Response.new('http://www.example.com/full_page.html', '200', '')
+      url = resp.normalize_asset_url('image.jpg')
+      url.should == 'http://www.example.com/image.jpg'
+      url = resp.normalize_asset_url('/image.jpg')
+      url.should == 'http://www.example.com/image.jpg'
+      url = resp.normalize_asset_url('http://www.example.org/image.jpg')
+      url.should == 'http://www.example.org/image.jpg'
+      
+      resp = ContentOMatic::Response.new('http://www.example.com/foo/full_page.html', '200', '')
+      url = resp.normalize_asset_url('image.jpg')
+      url.should == 'http://www.example.com/foo/image.jpg'
+      url = resp.normalize_asset_url('/image.jpg')
+      url.should == 'http://www.example.com/image.jpg'
+      url = resp.normalize_asset_url('http://www.example.org/image.jpg')
+      url.should == 'http://www.example.org/image.jpg'
+      
+      resp = ContentOMatic::Response.new('http://www.example.com/foo/bar/full_page.html', '200', '')
+      url = resp.normalize_asset_url('image.jpg')
+      url.should == 'http://www.example.com/foo/bar/image.jpg'
+      url = resp.normalize_asset_url('/fubar/image.jpg')
+      url.should == 'http://www.example.com/fubar/image.jpg'
+      url = resp.normalize_asset_url('http://www.example.org/image.jpg')
+      url.should == 'http://www.example.org/image.jpg'
     end
     
   end

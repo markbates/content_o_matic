@@ -1,4 +1,4 @@
-require 'hpricot'
+require 'nokogiri'
 require 'configatron'
 require 'cachetastic'
 require 'logger'

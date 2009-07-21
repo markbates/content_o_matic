@@ -12,7 +12,7 @@ require 'spec/rake/spectask'
 
 @gem_spec = Gem::Specification.new do |s|
   s.name = "content_o_matic"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.summary = "content_o_matic"
   s.description = "content_o_matic was developed by: markbates"
   s.author = "markbates"
@@ -23,7 +23,7 @@ require 'spec/rake/spectask'
   s.extra_rdoc_files = ['README', 'LICENSE']
   s.has_rdoc = true
   s.rubyforge_project = "magrathea"
-  s.add_dependency('hpricot')
+  s.add_dependency('nokogiri')
   s.add_dependency('configatron')
   s.add_dependency('cachetastic')
   # s.test_files = FileList['spec/**/*']

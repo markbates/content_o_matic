@@ -3,8 +3,9 @@
     <h1>My Big Header!!</h1>
 
     <p>Blandit praesent luptatum zzril delenit: augue duis dolore te feugait nulla facilisi nam liber. Vulputate velit esse molestie consequat vel, illum dolore eu feugiat nulla facilisis at vero eros. Ad minim veniam quis nostrud exerci tation ullamcorper suscipit lobortis nisl, ut aliquip ex ea commodo? Odio dignissim qui tempor cum soluta nobis eleifend option congue nihil. Etiam processus dynamicus qui sequitur mutationem; consuetudium lectorum mirum est notare quam littera gothica quam nunc.</p>
-    <img src="image1.jpg" />
-    <img src="/image2.jpg" />
-    <img src="http://www.example.org/image3.jpg" />
-  
+    <a href="http://www.example.com/link.html">link</a>
+    <a href="http://www.example.com/link2.html">link2</a>
+    <a href="http://www.example.com/foo/link3.html">link3</a>
+    <a href="http://www.example.org/foo/link4.html">link4</a>
+    <img src="http://www.example.com/image1.jpg"><img src="http://www.example.com/image2.jpg"><img src="http://www.example.org/image3.jpg">
 <!-- Loaded Content: 'full_page.html' -->

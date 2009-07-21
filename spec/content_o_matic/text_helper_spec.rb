@@ -8,10 +8,12 @@ describe ActionView::Helpers::TextHelper do
     it 'should return just the body of page by default' do
       text = content_o_matic('full_page.html')
       text.should_not be_nil
+      # write_fixture('full_page_html_body.txt', text)
       text.should == fixture_value('full_page_html_body.txt')
       
       text = content_o_matic('http://www.example.com/body_only.html')
       text.should_not be_nil
+      # write_fixture('body_only.txt', text)
       text.should == fixture_value('body_only.txt')
     end
     
