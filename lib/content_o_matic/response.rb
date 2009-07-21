@@ -1,33 +1,58 @@
 module ContentOMatic
-    
+  # This class wraps the response received from pulling down content from a web page.
   class Response
     
+    # The status of the response
     attr_accessor :status
+    # The full body of the response
     attr_accessor :body
+    # The url of the requested page
     attr_accessor :url
     
+    # Takes the url of the requested page, the status code of the
+    # response, and the body of the response.
     def initialize(url, status, body = '')
       self.url = url
       self.status = status.to_i
       self.body = body
     end
     
+    # Returns <tt>true</tt> if the status of the page was 200
     def success?
       self.status == 200
     end
     
-    def to_s
+    def to_s # :nodoc:
       self.success? ? self.body : ''
     end
     
-    def to_str
+    def to_str # :nodoc:
       self.to_s
     end
     
+    # Returns <tt>true</tt> if the page is wrapped in <tt>html</tt> tags.
     def has_layout?
       return self.body != self.html_body
     end
     
+    # Returns the 'full' HTML body of the requested page.
+    # If you pass in <tt>true</tt> it will normalize all the links
+    # found in the body.
+    # 
+    # Example:
+    #   # http://www.example.com/foo/bar.html
+    #   <img src='image.jpg'> # => <img src='http://www.example.com/foo/image.jpg'>
+    #   <img src='/image.jpg'> # => <img src='http://www.example.com/image.jpg'>
+    #   <img src='http://www.example.org/image.jpg'> # => <img src='http://www.example.org/image.jpg'>
+    # 
+    # The following tags get 'normalized' with the <tt>true</tt> parameter:
+    #   img
+    #   script
+    #   link
+    #   a
+    #   iframe
+    #   form
+    #   object
     def body(normalize_assets = false)
       if normalize_assets
         unless @__normalized_body
@@ -50,6 +75,10 @@ module ContentOMatic
       @body
     end
     
+    # Returns just the content within the HTML 'body' tag.
+    # If there is no 'body' tag, then the whole response body is returned.
+    # If you pass in <tt>true</tt> it will normalize all the links
+    # found in the body. See the body method for more details.
     def html_body(normalize_assets = false)
       unless @__doc_body
         doc = Nokogiri::HTML(self.body(normalize_assets))
@@ -59,8 +88,10 @@ module ContentOMatic
       return @__doc_body
     end
     
+    # Returns a ContentOMatic::InvalidResponseError exception if the
+    # response was not a success.
     def exception
-      ContentOMatic::InvalidResponseError.new("URL: '#{self.url}' did not return a valid response! Status: '#{self.status}' Body: '#{self.body}'") unless self.success?
+      ContentOMatic::InvalidResponseError.new("URL: '#{self.url}' did not return a valid response! Status: '#{self.status}'") unless self.success?
     end
     
     private

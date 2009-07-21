@@ -12,7 +12,7 @@ require 'spec/rake/spectask'
 
 @gem_spec = Gem::Specification.new do |s|
   s.name = "content_o_matic"
-  s.version = "0.0.2"
+  s.version = "0.1.0"
   s.summary = "content_o_matic"
   s.description = "content_o_matic was developed by: markbates"
   s.author = "markbates"
@@ -26,17 +26,6 @@ require 'spec/rake/spectask'
   s.add_dependency('nokogiri')
   s.add_dependency('configatron')
   s.add_dependency('cachetastic')
-  # s.test_files = FileList['spec/**/*']
-  #s.bindir = "bin"
-  #s.executables << "content_o_matic"
-  #s.add_dependency("", "")
-  #s.add_dependency("", "")
-  #s.extensions << ""
-  #s.required_ruby_version = ">= 1.8.6"
-  #s.default_executable = ""
-  #s.platform = "Gem::Platform::Ruby"
-  #s.requirements << "An ice cold beer."
-  #s.requirements << "Some free time!"
 end
 
 # rake package
